@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>商城注册</title>
+  <style>
+    /* 页面基本样式 */
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* 导航栏样式 */
+    .nav {
+      background-color: #333;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 25px;
+      font-size: 16px;
+    }
+
+    .nav a:last-child {
+      margin-right: 0;
+    }
+
+    /* 注册表单容器样式 */
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* 表单标题样式 */
+    h2 {
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* 表单行样式 */
+    .form-row {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    /* 半宽的表单项 */
+    .form-group-half {
+      flex: 1;
+    }
+
+    /* 标签样式 */
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    /* 输入框样式 */
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* 提交按钮样式 */
+    .btn {
+      background-color: #ff6b00;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 30px auto 0;
+    }
+
+    /* 页脚样式 */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #999;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* 版权信息 */
+    .powered-by {
+      font-size: 12px;
+      margin-top: 15px;
+    }
+
+    .powered-by a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .powered-by a:hover {
+      color: #0080ff;
+      text-decoration: underline;
+    }
+
+    /* 错误消息样式 */
+    .error-message {
+      color: #ff6b00;
+      font-size: 12px;
+      margin-top: 4px;
+      display: block;
+      min-height: 16px;
+    }
+  </style>
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="nav">
+  <a href="#">首页</a>
+  <a href="#">商品分类</a>
+  <a href="#">热销</a>
+  <a href="#">新品</a>
+  <a href="register2.html">注册</a>
+  <a href="#">登录</a>
+</div>
+
+<!-- 注册表单容器 -->
+<div class="container">
+  <h2>注册新用户</h2>
+  <form>
+    <!-- 第一行表单项（用户名和邮箱） -->
+    <div class="form-row">
+      <div class="form-group-half">
+        <label>用户名</label>
+        <input type="text"
+               id="usernameInput"
+               data-field="username"
+               placeholder="请输入用户名"
+               pattern="^[a-zA-Z0-9_]{4,16}$"
+               title="用户名必须是4-16位的字母、数字或下划线"
+               required>
+      </div>
+      <div class="form-group-half">
+        <label>邮箱</label>
+        <input type="email"
+               id="emailInput"
+               data-field="email"
+               placeholder="请输入邮箱"
+               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+               title="请输入有效的邮箱地址"
+               required>
+      </div>
+    </div>
+
+    <!-- 第二行表单项（密码和收货人） -->
+    <div class="form-row">
+      <div class="form-group-half">
+        <label>密码</label>
+        <input type="password"
+               data-field="password"
+               placeholder="请输入密码"
+               autocomplete="new-password"
+               minlength="8"
+               maxlength="32"
+               pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+               title="密码必须包含大小写字母和数字，至少8位"
+               required>
+      </div>
+      <div class="form-group-half">
+        <label>收货人</label>
+        <input type="text"
+               data-field="receiver"
+               placeholder="请输入收货人"
+               pattern="^[\u4e00-\u9fa5]{2,}$"
+               title="请输入有效的中文姓名"
+               required>
+      </div>
+    </div>
+
+    <!-- 第三行表单项（收货电话和收货地址） -->
+    <div class="form-row">
+      <div class="form-group-half">
+        <label>收货电话</label>
+        <input type="tel"
+               data-field="phone"
+               placeholder="请输入收货电话"
+               pattern="^1[3-9]\d{9}$"
+               title="请输入有效的11位手机号码"
+               required>
+      </div>
+      <div class="form-group-half">
+        <label>收货地址</label>
+        <input type="text"
+               data-field="address"
+               placeholder="请输入收货地址"
+               minlength="5"
+               title="地址至少需要5个字符"
+               required>
+      </div>
+    </div>
+
+    <!-- 提交按钮 -->
+    <button type="submit" class="btn">提交</button>
+  </form>
+</div>
+
+<!-- 页脚 -->
+<footer>
+  <p class="powered-by">
+    Powered by
+    <a href="https://github.com/VANLKL"
+       target="_blank"
+       rel="noopener noreferrer">
+      VANLKL
+    </a>
+  </p>
+</footer>
+
+<!-- 表单验证的 JavaScript 脚本 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 获取表单和表单项
+    const form = document.querySelector('form');
+    const inputs = {
+      username: document.querySelector('[data-field="username"]'),
+      email: document.querySelector('[data-field="email"]'),
+      password: document.querySelector('[data-field="password"]'),
+      receiver: document.querySelector('[data-field="receiver"]'),
+      phone: document.querySelector('[data-field="phone"]'),
+      address: document.querySelector('[data-field="address"]')
+    };
+
+    // 为每个表单输入框添加错误信息显示区域
+    Object.values(inputs).forEach(input => {
+      const errorSpan = document.createElement('span');
+      errorSpan.className = 'error-message';
+      input.parentNode.appendChild(errorSpan);
+    });
+
+    // 验证规则
+    const validators = {
+      username: (value) => {
+        if (!/^[a-zA-Z0-9_]{4,16}$/.test(value)) {
+          return '用户名必须是4-16位的字母、数字或下划线';
+        }
+        return '';
+      },
+      email: (value) => {
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(value)) {
+          return '请输入有效的邮箱地址';
+        }
+        return '';
+      },
+      password: (value) => {
+        if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(value)) {
+          return '密码必须包含大小写字母和数字，至少8位';
+        }
+        return '';
+      },
+      receiver: (value) => {
+        if (!/^[\u4e00-\u9fa5]{2,}$/.test(value)) {
+          return '请输入有效的中文姓名';
+        }
+        return '';
+      },
+      phone: (value) => {
+        if (!/^1[3-9]\d{9}$/.test(value)) {
+          return '请输入有效的11位手机号码';
+        }
+        return '';
+      },
+      address: (value) => {
+        if (value.length < 5) {
+          return '地址至少需要5个字符';
+        }
+        return '';
+      }
+    };
+
+    // 添加实时验证监听事件
+    Object.entries(inputs).forEach(([key, input]) => {
+      input.addEventListener('input', () => validateField(key, input));
+    });
+
+    // 表单提交事件
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // 验证所有字段
+      Object.entries(inputs).forEach(([key, input]) => {
+        if (!validateField(key, input)) isValid = false;
+      });
+
+      if (isValid) {
+        alert('验证通过');
+        form.submit();
+      }
+    });
+
+    // 验证单个字段并更新显示的错误消息
+    function validateField(fieldName, input) {
+      const errorSpan = input.parentNode.querySelector('.error-message');
+      const value = input.value.trim();
+
+      if (validators[fieldName]) {
+        const error = validators[fieldName](value);
+        errorSpan.textContent = error || '';
+        input.style.borderColor = error ? '#ff6b00' : '#ddd';
+        return !error;
+      }
+      return true;
+    }
+  });
+</script>
+</body>
+</html>

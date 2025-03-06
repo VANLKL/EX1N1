@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <style>
+        /* 页面整体样式 */
+        body {
+            background-color: #f5f5f5; /* 背景色 */
+            font-family: Arial, sans-serif; /* 字体样式 */
+            max-width: 500px; /* 最大宽度 */
+            margin: 20px auto; /* 自动水平居中 */
+            padding: 20px; /* 内边距 */
+        }
+
+        /* 导航栏样式 */
+        .nav {
+            background-color: #0080ff; /* 背景色 */
+            padding: 15px;
+            margin-bottom: 30px; /* 下边距 */
+            border-radius: 8px; /* 圆角 */
+        }
+
+        /* 链接样式 */
+        a {
+            color: #fff; /* 字体颜色 */
+            text-decoration: none; /* 无下划线 */
+        }
+
+        /* 标题样式 */
+        h2 {
+            color: #333; /* 字体颜色 */
+            margin-bottom: 25px; /* 下边距 */
+        }
+
+        /* 表单组样式 */
+        .form-group {
+            margin-bottom: 20px; /* 下边距 */
+        }
+
+        /* 标签样式 */
+        label {
+            display: block;
+            margin-bottom: 8px; /* 下边距 */
+            color: #666; /* 字体颜色 */
+        }
+
+        /* 输入框样式 */
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%; /* 宽度占满容器 */
+            padding: 10px; /* 内边距 */
+            border: 1px solid #ddd; /* 边框颜色 */
+            border-radius: 4px; /* 圆角 */
+            box-sizing: border-box; /* 包含内边距和边框的宽度 */
+        }
+
+        /* 单选按钮组样式 */
+        .radio-group {
+            margin: 15px 0; /* 上下边距 */
+            display: flex; /* 使用flex布局 */
+            align-items: center; /* 垂直居中 */
+            gap: 20px; /* 按钮之间的间距 */
+        }
+
+        /* 单选按钮选项样式 */
+        .radio-option {
+            display: flex; /* 使用flex布局 */
+            align-items: center; /* 垂直居中 */
+            gap: 8px; /* 标签与按钮之间的间距 */
+        }
+
+        /* 单选按钮样式 */
+        input[type="radio"] {
+            accent-color: #0080ff; /* 设置选中时的颜色 */
+            width: 16px; /* 设置大小 */
+            height: 16px; /* 设置大小 */
+            margin: 0; /* 去除默认边距 */
+        }
+
+        /* 按钮样式 */
+        .btn {
+            padding: 12px 25px; /* 内边距 */
+            border: none; /* 无边框 */
+            border-radius: 4px; /* 圆角 */
+            cursor: pointer; /* 光标样式 */
+            transition: all 0.3s ease; /* 平滑过渡效果 */
+        }
+
+        /* 提交按钮样式 */
+        .submit-btn {
+            background-color: #0080ff; /* 背景色 */
+            color: white; /* 字体颜色 */
+        }
+
+        /* 提交按钮鼠标悬停效果 */
+        .submit-btn:hover {
+            background-color: #0066cc; /* 悬停时的背景色 */
+        }
+
+        /* 重置按钮样式 */
+        .reset-btn {
+            background-color: #666; /* 背景色 */
+            color: white; /* 字体颜色 */
+            margin-left: 15px; /* 左边距 */
+        }
+
+        /* 重置按钮鼠标悬停效果 */
+        .reset-btn:hover {
+            background-color: #555; /* 悬停时的背景色 */
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center; /* 居中对齐 */
+            margin-top: 40px; /* 上边距 */
+            color: #999; /* 字体颜色 */
+            font-size: 14px; /* 字体大小 */
+            line-height: 1.6; /* 行高 */
+        }
+
+        /* 页脚中的版权信息样式 */
+        .powered-by {
+            font-size: 12px; /* 字体大小 */
+            margin-top: 15px; /* 上边距 */
+        }
+
+        /* 页脚中的链接样式 */
+        .powered-by a {
+            color: #666; /* 字体颜色 */
+            text-decoration: none; /* 无下划线 */
+            transition: color 0.3s; /* 平滑过渡效果 */
+        }
+
+        /* 页脚中的链接悬停效果 */
+        .powered-by a:hover {
+            color: #0080ff; /* 悬停时的字体颜色 */
+            text-decoration: underline; /* 悬停时添加下划线 */
+        }
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="nav">
+    <a href="register2.html">商城注册页面</a> <!-- 跳转到商城注册页面 -->
+</div>
+
+<main>
+    <h2>用户注册</h2>
+    <!-- 注册表单 -->
+    <form action="register" method="post" onsubmit="return validateForm()"> <!-- 表单提交至register接口 -->
+        <!-- 用户名 -->
+        <div class="form-group">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" required> <!-- 用户名输入框 -->
+        </div>
+
+        <!-- 密码 -->
+        <div class="form-group">
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" required minlength="6"> <!-- 密码输入框，最小长度6 -->
+        </div>
+
+        <!-- 确认密码 -->
+        <div class="form-group">
+            <label for="confirmPassword">重复密码：</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required> <!-- 确认密码输入框 -->
+        </div>
+
+        <!-- 用户类型 -->
+        <div class="form-group">
+            <label>用户类型：</label>
+            <div class="radio-group">
+                <span class="radio-option">
+                    <input type="radio" id="student" name="userType" value="student" checked>
+                    <label for="student">学生</label> <!-- 学生选项 -->
+                </span>
+                <span class="radio-option">
+                    <input type="radio" id="teacher" name="userType" value="teacher">
+                    <label for="teacher">教师</label> <!-- 教师选项 -->
+                </span>
+            </div>
+        </div>
+
+        <!-- 联系电话 -->
+        <div class="form-group">
+            <label for="phone">联系电话：</label>
+            <input type="tel" id="phone" name="phone"
+                   pattern="[0-9]{11}"
+                   title="请输入11位手机号码"
+                   required> <!-- 手机号输入框，要求为11位数字 -->
+        </div>
+
+        <!-- 提交和重置按钮 -->
+        <div class="form-group">
+            <button type="submit" class="btn submit-btn">注册</button> <!-- 提交按钮 -->
+            <button type="reset" class="btn reset-btn">重置</button> <!-- 重置按钮 -->
+        </div>
+    </form>
+</main>
+
+<!-- 页脚 -->
+<footer>
+    <p class="powered-by">
+        Powered by
+        <a href="https://github.com/VANLKL" target="_blank" rel="noopener">
+            VANLKL
+        </a>
+    </p> <!-- 开发者信息 -->
+</footer>
+
+<!-- 表单验证脚本 -->
+<script>
+    function validateForm() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // 检查密码是否一致
+        if (password !== confirmPassword) {
+            alert('两次输入的密码不一致，请重新输入！');
+            document.getElementById('confirmPassword').focus();
+            return false;
+        }
+
+        const phone = document.getElementById('phone').value;
+        // 验证手机号码格式是否正确
+        if (!/^1[3-9]\d{9}$/.test(phone)) {
+            alert('请输入有效的11位手机号码');
+            document.getElementById('phone').focus();
+            return false;
+        }
+
+        return true; // 返回true，允许表单提交
+    }
+</script>
+</body>
+</html>
